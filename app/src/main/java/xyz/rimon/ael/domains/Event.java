@@ -1,12 +1,13 @@
 package xyz.rimon.ael.domains;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by SAyEM on 3/11/17.
  */
 
-public abstract class Event {
+public abstract class Event implements Serializable{
     protected int id;
     protected String name;
     protected String code;
