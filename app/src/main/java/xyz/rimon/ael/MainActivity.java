@@ -7,14 +7,29 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 import xyz.rimon.ael.domains.Event;
+import xyz.rimon.ael.domains.UserEvent;
 import xyz.rimon.ael.factory.EventFactory;
 import xyz.rimon.ael.logger.Ael;
 import xyz.rimon.ael.registry.EventRegistry;
 
 public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Ael.register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Ael.unregister(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Subscribe
+    public void onLogEvent(UserEvent event) {
+        Toast.makeText(this, event.toString(), Toast.LENGTH_SHORT).show();
     }
 }

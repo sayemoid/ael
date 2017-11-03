@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import org.apache.commons.collections4.IteratorUtils;
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Iterator;
 import java.util.List;
@@ -20,8 +21,16 @@ public class Ael {
     private Ael() {
     }
 
+    public static void register(Object object){
+        EventBus.getDefault().register(object);
+    }
+    public static void unregister(Object object){
+        EventBus.getDefault().unregister(object);
+    }
+
     public static void logEvent(Context context, Event event) {
         StorageUtil.writeObject(context, StorageUtil.FILE_NAME, event);
+        EventBus.getDefault().post(event);
     }
 
     public static List<Event> getEvents(Activity context) {
