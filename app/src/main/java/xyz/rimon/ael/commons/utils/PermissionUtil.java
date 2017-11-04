@@ -28,6 +28,11 @@ public class PermissionUtil {
             if (ActivityCompat.shouldShowRequestPermissionRationale(context,
                     permission)) {
 
+                UIUtils.showToast(context,"This app needs storage permission to operate properly.");
+
+                ActivityCompat.requestPermissions(context,
+                        new String[]{permission},
+                        REQUEST_CODE);
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
