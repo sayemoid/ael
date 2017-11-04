@@ -38,6 +38,18 @@ You can find any specific event by tag or event code.
     List<Event> eventList = Ael.getEvents(context, eventType)
 ```
 
+<b>Do something when an event is logged</b>
+
+An event is published automatically when you log an event using Ael.logEnent(Context,Event) method.
+You can subscribe to that event and execute some code.
+
+```
+@Subscribe
+public void onLogEvent(UserEvent event) {
+    Toast.makeText(this, event.toString(), Toast.LENGTH_SHORT).show();
+}
+```
+
 <b> Add Ael to your project</b>
 
 ```
