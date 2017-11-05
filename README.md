@@ -40,7 +40,7 @@ You can find any specific event by tag or event code.
 
 <b>Do something when an event is logged</b>
 
-An event is published automatically when you log an event using Ael.logEnent(Context,Event) method.
+An event is published automatically when you log an event using Ael.logEvent(Context,Event) method.
 You can subscribe to that event and execute some code.
 
 ```
@@ -49,6 +49,17 @@ public void onLogEvent(UserEvent event) {
     Toast.makeText(this, event.toString(), Toast.LENGTH_SHORT).show();
 }
 ```
+
+But first register your publisher object.
+```
+    Ael.register(this);
+
+```
+
+You can unregister object by calling 
+ ```
+    Ael.unregister(this);
+ ```
 
 <b> Add Ael to your project</b>
 
