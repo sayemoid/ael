@@ -1,9 +1,9 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
     defaultConfig {
-//        applicationId "xyz.rimon.ael"
+        applicationId "xyz.rimon.ael"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
@@ -29,5 +29,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
     compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
     compile 'org.greenrobot:eventbus:3.1.0-RC'
+    compile 'com.google.code.gson:gson:2.8.2'
 
 }

@@ -21,6 +21,29 @@ public class EventFactory {
         else return eventFactory = new EventFactory();
     }
 
+    public Event createEvent(Event.Type eventType, String tag, byte rating) {
+        if (eventType == null || tag == null)
+            throw new IllegalArgumentException("Event type, code or tag can not be null");
+        if (rating > 5 || rating <= 0)
+            throw new IllegalArgumentException("Rating should be between 1-5");
+
+        if (eventType.equals(Event.Type.USER_EVENT)) {
+            Event e = new UserEvent(tag, rating);
+            e = EventRegistry.getInstance().register(e);
+            return e;
+        } else if (eventType.equals(Event.Type.APP_EVENT)) {
+            Event e = new AppEvent(tag, rating);
+            e = EventRegistry.getInstance().register(e);
+            return e;
+        } else if (eventType.equals(Event.Type.ERROR_EVENT)) {
+            Event e = new ErrorEvent(tag, rating);
+            e = EventRegistry.getInstance().register(e);
+            return e;
+        }
+
+        return new UserEvent(tag, rating);
+    }
+
     public Event createEvent(Event.Type eventType, String code, String tag, byte rating) {
         if (eventType == null || code == null || tag == null)
             throw new IllegalArgumentException("Event type, code or tag can not be null");

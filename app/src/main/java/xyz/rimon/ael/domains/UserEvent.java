@@ -10,28 +10,37 @@ public class UserEvent extends Event {
     private User user;
     private String actionType;
 
-    public UserEvent(String code, String tag,byte rating){
+    public UserEvent(String code, String tag, byte weight) {
         this.code = code;
-        this.rating = rating;
+        this.weight = weight;
         this.tag = tag;
         this.date = new Date();
         this.type = Type.USER_EVENT;
     }
 
-    public UserEvent(String name,String code,String tag,byte rating) {
-        this.name = name;
-        this.code = code;
+    public UserEvent(String tag, byte weight) {
+        this.code = tag;
+        this.weight = weight;
         this.tag = tag;
-        this.rating = rating;
         this.date = new Date();
         this.type = Type.USER_EVENT;
     }
-    public UserEvent(String name,String code,String tag,byte rating,User user) {
+
+    public UserEvent(String name, String code, String tag, byte weight) {
+        this.name = name;
+        this.code = code;
+        this.tag = tag;
+        this.weight = weight;
+        this.date = new Date();
+        this.type = Type.USER_EVENT;
+    }
+
+    public UserEvent(String name, String code, String tag, byte weight, User user) {
         this.user = user;
         this.name = name;
         this.code = code;
         this.tag = tag;
-        this.rating = rating;
+        this.weight = weight;
         this.date = new Date();
         this.type = Type.USER_EVENT;
     }
@@ -62,7 +71,7 @@ public class UserEvent extends Event {
                 ", code='" + code + '\'' +
                 ", type='" + type + '\'' +
                 ", tag='" + tag + '\'' +
-                ", rating=" + rating +
+                ", rating=" + weight +
                 ", date=" + date +
                 "} " + super.toString();
     }

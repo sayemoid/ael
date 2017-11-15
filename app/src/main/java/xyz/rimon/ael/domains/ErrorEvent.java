@@ -11,9 +11,16 @@ public class ErrorEvent extends Event {
     private String message;
     private String triggeredFrom;
 
-    public ErrorEvent(String code, String tag, byte rating) {
+    public ErrorEvent(String tag, byte weight) {
+        this.code = tag;
+        this.weight = weight;
+        this.tag = tag;
+        this.date = new Date();
+        this.type = Type.ERROR_EVENT;
+    }
+    public ErrorEvent(String code, String tag, byte weight) {
         this.code = code;
-        this.rating = rating;
+        this.weight = weight;
         this.tag = tag;
         this.date = new Date();
         this.type = Type.ERROR_EVENT;
