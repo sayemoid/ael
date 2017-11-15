@@ -10,6 +10,8 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.util.Date;
 
+import xyz.rimon.ael.commons.utils.DateUtils;
+
 /**
  * Created by SAyEM on 15/11/17.
  */
@@ -19,6 +21,7 @@ public class Commons {
         // Creates the json object which will manage the information received
         GsonBuilder builder = new GsonBuilder();
 
+        builder.setDateFormat(DateUtils.SERVER_DATE_TIME_PATTERN);
         // Register an adapter to manage the date types as long values
         builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
             public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

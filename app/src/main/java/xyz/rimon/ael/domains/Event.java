@@ -1,5 +1,7 @@
 package xyz.rimon.ael.domains;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
  */
 
 public abstract class Event implements Serializable{
+    @SerializedName("eventId")
     protected int id;
     protected String name;
     protected String code;
