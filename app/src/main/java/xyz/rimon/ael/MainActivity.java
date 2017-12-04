@@ -2,6 +2,7 @@ package xyz.rimon.ael;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
+import xyz.rimon.ael.commons.Commons;
 import xyz.rimon.ael.domains.Event;
 import xyz.rimon.ael.domains.UserEvent;
 import xyz.rimon.ael.factory.EventFactory;
@@ -40,19 +42,23 @@ public class MainActivity extends AppCompatActivity {
         Button btnShowEvent = this.findViewById(R.id.btnShowEvents);
         final TextView tv = this.findViewById(R.id.events);
 
-        Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_code1", "test_tag1", (byte) 4);
-        Event even2 = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_code2", "test_tag2", (byte) 3);
-        Event even3 = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_code3", "test_tag3", (byte) 5);
+        Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_tag1", (byte) 4);
+        Event even2 = EventFactory.getInstance().createEvent(Event.Type.APP_EVENT, "test_tag2", (byte) 3);
+        Event even3 = EventFactory.getInstance().createEvent(Event.Type.ERROR_EVENT, "test_tag3", (byte) 5);
 
         btnLogEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Event e = EventRegistry.getInstance().getEventByTag("test_tag2");
-                if (e == null) {
+                Event e1 = EventRegistry.getInstance().getEventByTag("test_tag1");
+                Event e2 = EventRegistry.getInstance().getEventByTag("test_tag2");
+                Event e3 = EventRegistry.getInstance().getEventByTag("test_tag3");
+                if (e1 == null || e2 == null || e3 == null) {
                     Toast.makeText(getApplicationContext(), "Could not find event!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Ael.logEvent(MainActivity.this, e);
+                Ael.logEvent(MainActivity.this, e1);
+                Ael.logEvent(MainActivity.this, e2);
+                Ael.logEvent(MainActivity.this, e3);
             }
         });
 
@@ -66,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     sb.append("\n");
                 }
                 tv.setText(sb.toString());
+
+                Log.i("GSON", Commons.buildGson().toJson(eventList));
             }
         });
 

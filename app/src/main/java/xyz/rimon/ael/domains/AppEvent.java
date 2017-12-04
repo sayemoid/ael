@@ -9,19 +9,35 @@ import java.util.Date;
 public class AppEvent extends Event {
     private String triggeredFrom;
 
-    public AppEvent(String code,String tag,byte rating){
-        this.code = code;
-        this.rating = rating;
+    public AppEvent(String tag,byte weight){
+        this.code = tag;
+        this.weight = weight;
         this.tag = tag;
         this.date = new Date();
         this.type = Type.APP_EVENT;
     }
-    public AppEvent(String triggeredFrom,String name,String code,String tag,byte rating) {
+    public AppEvent(String code,String tag,byte weight){
+        this.code = code;
+        this.weight = weight;
+        this.tag = tag;
+        this.date = new Date();
+        this.type = Type.APP_EVENT;
+    }
+    public AppEvent(String triggeredFrom,String name,String tag,byte weight) {
+        this.triggeredFrom = triggeredFrom;
+        this.name = name;
+        this.code = tag;
+        this.tag = tag;
+        this.weight = weight;
+        this.date = new Date();
+        this.type = Type.APP_EVENT;
+    }
+    public AppEvent(String triggeredFrom,String name,String code,String tag,byte weight) {
         this.triggeredFrom = triggeredFrom;
         this.name = name;
         this.code = code;
         this.tag = tag;
-        this.rating = rating;
+        this.weight = weight;
         this.date = new Date();
         this.type = Type.APP_EVENT;
     }
@@ -43,7 +59,7 @@ public class AppEvent extends Event {
                 ", code='" + code + '\'' +
                 ", type='" + type + '\'' +
                 ", tag='" + tag + '\'' +
-                ", rating=" + rating +
+                ", rating=" + weight +
                 ", date=" + date +
                 "} " + super.toString();
     }
