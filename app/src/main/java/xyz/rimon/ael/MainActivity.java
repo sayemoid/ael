@@ -66,12 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 List<Event> eventList = Ael.getEvents(MainActivity.this);
-                StringBuilder sb = new StringBuilder();
-                for (Event e : eventList) {
-                    sb.append(e.getTag());
-                    sb.append("\n");
-                }
-                tv.setText(sb.toString());
+                tv.setText(Commons.buildGson().toJson(eventList));
 
                 Log.i("GSON", Commons.buildGson().toJson(eventList));
             }
