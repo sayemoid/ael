@@ -28,6 +28,7 @@ public class StorageUtil {
 
     private static String uniqueID = UUID.randomUUID().toString();
     public static String FILE_NAME = "ael.events";
+    public static String TEMP_FILE_NAME = "temp.events";
 
     public static void writeObjects(Context context, String fileName, List<Event> objectList) {
         // check permission
@@ -99,4 +100,7 @@ public class StorageUtil {
         Log.i("OFFLINE_EVENTS", String.valueOf(objectList.size()));
     }
 
+    public static void clearObjects(Context context, String fileName) {
+        writeObjects(context, fileName, new ArrayList<Event>());
+    }
 }
