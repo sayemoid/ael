@@ -7,7 +7,7 @@
 <b>Create Events</b>
 
 ```
-    Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "event_code", "event_tag", (byte) 4):
+    Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "event_code", "event_tag", Event.Weight.NORMAL):
 ```
 
 You ccan create as much events as you want for future use. All of the events will be registered to <b>EventRegistry</b>.
