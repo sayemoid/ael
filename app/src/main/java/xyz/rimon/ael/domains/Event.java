@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by SAyEM on 3/11/17.
  */
 
-public abstract class Event implements Serializable{
+public abstract class Event implements Serializable {
     @SerializedName("eventId")
     protected int id;
     protected String name;
@@ -75,8 +75,20 @@ public abstract class Event implements Serializable{
         this.date = date;
     }
 
-    public enum Type{
-        USER_EVENT,APP_EVENT,ERROR_EVENT;
+    public enum Type {
+        USER_EVENT, APP_EVENT, ERROR_EVENT;
+    }
+
+    public static class Weight {
+        private Weight() {
+        }
+
+        public static byte VERY_LOW = 1;
+        public static byte LOW = 2;
+        public static byte NORMAL = 3;
+        public static byte HIGH = 4;
+        public static byte VERY_HIGH = 5;
+
     }
 
 }

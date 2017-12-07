@@ -26,6 +26,8 @@ public class EventFactory {
             throw new IllegalArgumentException("Event type, code or tag can not be null");
         if (rating > 5 || rating <= 0)
             throw new IllegalArgumentException("Rating should be between 1-5");
+        if (EventRegistry.getInstance().getEventByTag(tag) != null)
+            return EventRegistry.getInstance().getEventByTag(tag);
 
         if (eventType.equals(Event.Type.USER_EVENT)) {
             Event e = new UserEvent(tag, rating);
@@ -49,6 +51,8 @@ public class EventFactory {
             throw new IllegalArgumentException("Event type, code or tag can not be null");
         if (rating > 5 || rating <= 0)
             throw new IllegalArgumentException("Rating should be between 1-5");
+        if (EventRegistry.getInstance().getEventByTag(tag) != null)
+            return EventRegistry.getInstance().getEventByTag(tag);
 
         if (eventType.equals(Event.Type.USER_EVENT)) {
             Event e = new UserEvent(code, tag, rating);

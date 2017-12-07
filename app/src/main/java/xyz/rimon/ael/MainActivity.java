@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnShowEvent = this.findViewById(R.id.btnShowEvents);
         final TextView tv = this.findViewById(R.id.events);
 
-        Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_tag1", (byte) 4);
-        Event even2 = EventFactory.getInstance().createEvent(Event.Type.APP_EVENT, "test_tag2", (byte) 3);
-        Event even3 = EventFactory.getInstance().createEvent(Event.Type.ERROR_EVENT, "test_tag3", (byte) 5);
+        Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_tag1", Event.Weight.LOW);
+        Event even2 = EventFactory.getInstance().createEvent(Event.Type.APP_EVENT, "test_tag2", Event.Weight.NORMAL);
+        Event even3 = EventFactory.getInstance().createEvent(Event.Type.ERROR_EVENT, "test_tag3", Event.Weight.VERY_HIGH);
 
         btnLogEvent.setOnClickListener(new View.OnClickListener() {
             @Override
