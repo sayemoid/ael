@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import xyz.rimon.ael.commons.Commons;
 import xyz.rimon.ael.domains.Event;
@@ -42,23 +44,18 @@ public class MainActivity extends AppCompatActivity {
         Button btnShowEvent = this.findViewById(R.id.btnShowEvents);
         final TextView tv = this.findViewById(R.id.events);
 
-        Event event = EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_tag1", Event.Weight.LOW);
-        Event even2 = EventFactory.getInstance().createEvent(Event.Type.APP_EVENT, "test_tag2", Event.Weight.NORMAL);
-        Event even3 = EventFactory.getInstance().createEvent(Event.Type.ERROR_EVENT, "test_tag3", Event.Weight.VERY_HIGH);
+        EventFactory.getInstance().createEvent(Event.Type.USER_EVENT, "test_tag1", Event.Weight.LOW);
 
         btnLogEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Event e1 = EventRegistry.getInstance().getEventByTag("test_tag1");
-                Event e2 = EventRegistry.getInstance().getEventByTag("test_tag2");
-                Event e3 = EventRegistry.getInstance().getEventByTag("test_tag3");
-                if (e1 == null || e2 == null || e3 == null) {
-                    Toast.makeText(getApplicationContext(), "Could not find event!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                Map<String,String> bundle = new HashMap<>();
+                bundle.put("Name","Sayem");
+                bundle.put("click","btn");
+                bundle.put("phone","01710226163");
+                e1.setEventData(bundle);
                 Ael.logEvent(MainActivity.this, e1);
-                Ael.logEvent(MainActivity.this, e2);
-                Ael.logEvent(MainActivity.this, e3);
             }
         });
 

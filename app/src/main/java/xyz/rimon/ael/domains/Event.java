@@ -4,12 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * Created by SAyEM on 3/11/17.
  */
 
-public abstract class Event implements Serializable {
+public class Event implements Serializable {
     @SerializedName("eventId")
     protected int id;
     protected String name;
@@ -18,6 +19,16 @@ public abstract class Event implements Serializable {
     protected String tag;
     protected byte weight;
     protected Date date;
+
+    protected Map<String,String> eventData;
+
+    public Map<String, String> getEventData() {
+        return eventData;
+    }
+
+    public void setEventData(Map<String, String> eventData) {
+        this.eventData = eventData;
+    }
 
     public int getId() {
         return id;
