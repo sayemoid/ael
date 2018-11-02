@@ -5,6 +5,7 @@ import android.app.Activity;
 import org.apache.commons.collections4.IteratorUtils;
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -28,6 +29,10 @@ public class Ael {
 
     public static void unregister(Object object) {
         EventBus.getDefault().unregister(object);
+    }
+
+    public static void clearEvents(Activity context){
+        EventPref.saveEvents(context,new ArrayList<Event>());
     }
 
     public static void logEvent(Activity context, Event event) {
